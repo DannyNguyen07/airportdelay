@@ -19,3 +19,5 @@ df[numeric_cols] = df[numeric_cols].round(0)
 
 print(df.head())
 print(df.info())
+
+df.to_csv("data/clean/airline_delays_clean.csv", index=False)
