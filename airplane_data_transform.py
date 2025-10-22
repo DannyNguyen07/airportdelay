@@ -28,7 +28,14 @@ def data_transformation():
     print("Uploaded Clean CSV to data/clean")
 
 def send_to_sql():
-    pass
+    conn = sqlite3.connect("data/airline_delays.db") #Connecting to SQL Lite Database
+    cursor = conn.cursor()
+
+    df = pd.read_csv("data/clean/airline_delays_clean.csv") #Reading cleaned up CSV
+    df.to_sql("airline_delays", conn, if_exists="replace", index=False) #Send to SQL
+
+    conn.close() #Closing Connection to database
 
 if __name__ == "__main__":
     data_transformation()
+    send_to_sql()
